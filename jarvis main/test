@@ -1,0 +1,16 @@
+from NewsRead import NewsApiClient
+
+# Initialize the news API client
+newsapi = NewsApiClient(api_key="bd3cd9d551474e0aba8b971b309a7954")
+
+# Fetch the top headlines
+try:
+    top_headlines = newsapi.get_top_headlines(language='en', country='us')
+    articles = top_headlines['articles']
+    if articles:
+        for i, article in enumerate(articles[:5]):  # Print the top 5 news headlines
+            print(f"Headline {i + 1}: {article['title']}")
+    else:
+        print("Sorry, I couldn't fetch the news right now.")
+except Exception as e:
+    print(f"Error: {e}")
